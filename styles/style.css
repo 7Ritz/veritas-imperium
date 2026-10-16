@@ -109,18 +109,16 @@ hr {
 
     a {
     font-family: 'Nunito Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 100;
-    font-size: 18px;
-    letter-spacing: 0.1em;
-    color: #cccccc;
+    font-weight: 200;
+    font-size: 20px;
+    color: #FAFAFA;
     text-decoration: none;
-    padding: 10px 30px;
     }   
 
     a:hover {
         opacity:80%;
         transition: 0.2s ease-in-out;
-        cursor:default;
+        cursor:pointer;
     }
 
     #eagleye:hover {
@@ -130,8 +128,6 @@ hr {
     #atomic:hover {
             cursor:cell;
         }
-
-    
 
 
 /* Main content config */
@@ -159,6 +155,10 @@ hr {
     br {
     border: 1px solid #9b9b9b;
     display: block;
+    }
+
+    #main {
+        font-weight: bold;
 }
 
 .container {

@@ -1,0 +1,126 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', ui-monospace, monospace;
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-rule: var(--rule);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* Semantic palette: ink, graphite, mist, and restrained signal-white. */
+:root {
+  color-scheme: dark;
+  --background: #080909;
+  --foreground: #f1f3f2;
+  --card: #111313;
+  --card-foreground: #f1f3f2;
+  --popover: #111313;
+  --popover-foreground: #f1f3f2;
+  --primary: #f1f3f2;
+  --primary-foreground: #080909;
+  --secondary: #171a19;
+  --secondary-foreground: #f1f3f2;
+  --muted: #171a19;
+  --muted-foreground: #858d89;
+  --accent: #202523;
+  --accent-foreground: #f1f3f2;
+  --destructive: #f1f3f2;
+  --border: #252b29;
+  --rule: #747d78;
+  --input: #252b29;
+  --ring: #9aa49f;
+  --grid-line: rgba(142, 160, 151, 0.075);
+  --aura: rgba(196, 224, 207, 0.15);
+  --radius: 0.5625rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: center top;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@keyframes grid-breathe {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.015); }
+}
+
+@keyframes aura-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.25; }
+  50% { transform: translate3d(10px, -14px, 0) scale(1.12); opacity: 0.65; }
+}
+
+.grid-atmosphere {
+  position: relative;
+  isolation: isolate;
+}
+
+.grid-atmosphere::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background: radial-gradient(circle at 50% 20%, rgba(182, 211, 194, 0.06), transparent 34%);
+  animation: grid-breathe 8s ease-in-out infinite;
+}
+
+.aura-particle {
+  position: absolute;
+  display: block;
+  width: 0.35rem;
+  height: 0.35rem;
+  border: 1px solid rgba(207, 230, 216, 0.55);
+  border-radius: 999px;
+  box-shadow: 0 0 18px var(--aura);
+  animation: aura-drift 7s ease-in-out infinite;
+}
+
+.aura-particle:nth-of-type(2) { animation-delay: -2.5s; animation-duration: 9s; }
+.aura-particle:nth-of-type(3) { animation-delay: -4s; animation-duration: 8s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-atmosphere::before,
+  .aura-particle { animation: none; }
+}
